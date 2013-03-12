@@ -1,0 +1,235 @@
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+div#cover {
+  text-align: center;
+}
+div#cover img {
+  vertical-align:middle;
+}
+div.page {
+  width: 600px;
+  height: 800px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  margin-bottom: 10px;
+  position: relative;
+  border: 1px solid black;
+}
+div.page div.toc:last-child {
+  margin-bottom: 20px;
+}
+div.page div.footer {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+
+  position:absolute;
+  bottom: 10px;
+}
+body {
+  background-color: white;
+  color: black;
+  width: 600px;
+  margin: 10px
+}
+h1 {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 45px;
+  margin-bottom: 80px;
+  font-family: "Lusitana", serif;
+  line-height: 58px;
+}
+h2 {
+  font-size: 1.8em;
+  border-bottom: 1px solid #777;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  font-family: "Lusitana", serif;
+  color: #355BF0;
+}
+h3 {
+  font-size: 1.5em;
+  color: #2426CF;
+}
+.page div.toc:first-child {
+  margin-top: 40px;
+}
+div.toc {
+  margin-right: 40px;
+}
+div.toc ul {
+  margin-left: 40px;
+}
+div.toc ul li:last-child {
+  margin-bottom: 10px;
+}
+
+body > p, .page > p {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  margin-top: 13px;
+  line-height: 25px;
+  text-align: justify;
+  text-indent: 40px;
+  -moz-hyphens: manual;
+  -webkit-hyphens: manual;
+  hyphens: manual;
+  font-family: "Oxygen", sans-serif;
+}
+body.firefox .page > p {
+  font-size: 14.75px;
+}
+.page > p.split-next {
+  text-indent: 0;
+}
+
+.page > p.split:after {
+  content: "";
+  line-height: 0;
+  display: inline-block;
+  width: 100%;
+}
+
+blockquote:before {
+  content '"'
+}
+blockquote {
+  border-radius: 12px;
+  width: 500px;
+  background-color: #c0c0c0;
+  color: #404040;
+  margin: 20px;
+  margin-left: 40px;
+  margin-right: 50px;
+  padding: 10px;
+}
+blockquote cite:before {
+  content: '-- '
+}
+blockquote cite {
+  font-style: italic;
+}
+blockquote div {
+  margin-top: 10px;
+  text-align: right;
+}
+blockquote img {
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin-right: 13px;
+}
+
+figure.table {
+  text-align: center;
+  padding: 30px;
+  text-align:center;
+}
+figure.table table {
+  margin-left: auto;
+  margin-right: auto;
+}
+figure.table figcaption {
+  padding-top: 10px;
+  font-family: "Oxygen", sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+}
+figure.table table tr td {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+figure.table table tr td.left_border {
+  border-left: 1px solid black;
+}
+figure.table table tr td.right_border {
+  border-right: 1px solid black;
+}
+figure.table table tr td.top_border_double {
+  border-top: 3px double black;
+}
+figure.table table tr td.top_border_single {
+  border-top: 1px solid black;
+}
+figure.table table tr td.bottom_border_double {
+  border-bottom: 3px double black;
+}
+figure.table table tr td.bottom_border_single {
+  border-bottom: 1px solid black;
+}
+
+figure.image {
+  padding: 30px;
+  text-align:center;
+}
+figure.image img {
+  background-color: #c0c0c0;
+  border: 1px solid #555;
+  border-radius: 10px;
+  box-shadow 0px 0px 2px 1px #333;
+}
+figure.image figcaption {
+  font-family: "Oxygen", sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 5px;
+}
+
+div.inset {
+  width: 500px;
+  background-color: #c0c0c0;
+  color: #404040;
+  margin: 20px;
+  margin-left: 40px;
+  margin-right: 50px;
+  padding: 10px;
+  min-height: 40px;
+  border-radius: 12px;
+}
+div.inset img {
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin-right: 13px;
+}
+div.inset p {
+}
+
+.acknowledgements ul {
+  margin-bottom: 20px;
+  list-style-type: square;
+  list-style-position: inside;
+}
+.acknowledgements ul li {
+  margin-bottom: 10px;
+}
+
+pre {
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 8px;
+
+  text-shadow: 0.07em 0.07em #181818;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.40) inset;
+  border: 1px solid #222;
+}
+pre code {
+	font-size: 15px;
+}
+code {
+	font-family: 'Inconsolata', monospace;
+}
