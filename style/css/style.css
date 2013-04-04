@@ -32,7 +32,7 @@ div.page div.footer {
   bottom: 10px;
 }
 body {
-  background-color: white;
+  background-image: url('/style/images/noise_black.png');
   color: black;
   width: 600px;
   margin: 10px
