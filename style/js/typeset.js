@@ -75,7 +75,41 @@ function should_not_be_typeset(node) {
   return (node.is('script') || node.attr('id') == "cover");
 }
 
+var next_page = 1;
+
+function page() {
+}
+
+function scroll_up() {
+  page = $('#page-' + next_page);
+  page.css('height', '-=50');
+
+  if (page.height() <= 0) {
+    if (next_page > 1) {
+      page.css('z-index', -next_page);
+      next_page--;
+      $('#page-' + next_page).css('z-index', 2).css('height', $(window).height);
+      $('#page-' + (next_page-1)).css('z-index', 1).css('height', $(window).height);
+    }
+  }
+}
+
+function scroll_down() {
+  page = $('#page-' + next_page);
+  page.css('height', '+=50');
+
+  if (page.height() > $(window).height()) {
+    if (next_page > 1) {
+      $('#page-' + (next_page - 1)).css('z-index', -(next_page-1));
+    }
+    next_page++;
+    page.css('z-index', 1).css('height', $(window).height);
+    $('#page-' + next_page).css('z-index', 2).css('height', 0);
+  }
+}
+
 function typeset(tag) {
+  $('body').css('padding', 0).css('background-image', 'url("../images/noise_black.png")');
   var $nodes = $(tag).children('[class!="not-rendered"]');
   var $old_nodes = $nodes;
 
@@ -86,10 +120,20 @@ function typeset(tag) {
 
   var toc_refs = {};
 
-  var last_page = $('#cover');
+  var book_height = $(window).height();
+  var book_width = 0.75 * book_height;
+
+  $('#cover .extent').css('width', book_width);
+  var last_page = $('#cover').css('width', book_width);
+
+  var overlay = $('<div id="overlay"></div>').css('height', book_height).insertAfter(last_page);
+  overlay.append(last_page);
+
+  last_page = $('#overlay #cover').css('width', book_width);
 
   var tocReached = false;
   var endPreface = false;
+  var pages_overall = 1;
   function form_page() {
     if (pages != 0) {
       page_name = pages;
@@ -98,17 +142,21 @@ function typeset(tag) {
       page_name = romanize(aux_pages).toLowerCase();
     }
 
-    $('<div id="page-' + page_name + '" class="page"></div>').insertAfter(last_page);
+    $('<div id="page-' + pages_overall + '" class="page"><div class="extent"><div class="content"></div></div></div>').insertAfter(last_page);
 
-    var page = $('#page-' + page_name);
-    last_page = page;
+    last_page = $('#page-' + pages_overall).css('z-index', -pages_overall).css('width', book_width);
+    var extent = $('#page-' + pages_overall + ' .extent').css('width', book_width);
+    var page = $('#page-' + pages_overall + ' .extent .content');
+
+    last_page.css('height', book_height);
+    extent.css('height', book_height);
 
     var pageBreak = false;
 
     var padder;
     var pad_strategy;
 
-    var page_height = page.height() - 10;
+    var page_height = book_height - parseInt(page.css('padding-bottom'));
 
     var curY = 0;
     while($nodes.length > 0) {
@@ -159,6 +207,10 @@ function typeset(tag) {
             else {
               var ntag = $contents[i].nodeName;
               var text = $contents[i].firstChild.nodeValue;
+
+              if (text == null) {
+                text = "";
+              }
 
               jQuery.each(text.split(' '), function() {
                 $words[$words.length] = "<" + ntag + ">" + this + "</" + ntag + ">";
@@ -212,10 +264,10 @@ function typeset(tag) {
         }
 
         // Append footer
-        page.append("<div class='footer'>" + page_name + "</div>");
-        page.children("div.footer").css("margin-top", "+=" + diff_height);
+        extent.append("<div class='footer'>" + page_name + "</div>");
+        extent.children("div.footer").css("margin-top", "+=" + diff_height);
 
-        if (pageBreak && endPreface && pages == 0) { pages = 1; return; }
+        if (pageBreak && endPreface && pages == 0) { pages_overall++; pages = 1; return; }
         break;
       }
 
@@ -239,6 +291,7 @@ function typeset(tag) {
       $nodes = $nodes.slice(1);
     }
 
+    pages_overall++;
     if (pages > 0) {
       pages++;
     }
@@ -256,10 +309,21 @@ function typeset(tag) {
   return true;
 }
 
+$('body').mousewheel(function(event, delta, deltaX, deltaY) {
+  if (deltaY > 0) {
+    scroll_up();
+  }
+  else if (deltaY < 0) {
+    scroll_down();
+  }
+});
+
 $(window).bind('load', function() {
   detectUserAgent();
   syntaxHighlight();
   if (shouldTypeset()) {
     typeset('body');
   }
+  next_page = 1;
+  $('#page-' + next_page).css('z-index', 2).css('height', 0);
 });
