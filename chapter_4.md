@@ -1,5 +1,5 @@
 ---
-title: "But That Happpens To Me Too!"
+title: "But That Happens To Me Too!"
 ---
 
 In attempting to communicate with you, the Marginalised Person™ may bring up examples of the sorts of daily manifestations of discrimination they face. Many of these examples seem trivial to Privileged People® but clearly reflect the way the Marginalised Person™ has been “othered” by society. “Othering” is a system of social markers that defines “Us” and “them”, neatly and conveniently categorising people into their appropriate places within society. It’s a way of defining a secured and positive position in the world by stigmatising “others”. In other words, it’s the process of dehumanising anyone different to the Chosen Privileged.
